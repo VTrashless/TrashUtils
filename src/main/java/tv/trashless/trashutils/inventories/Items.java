@@ -72,19 +72,20 @@ public class Items {
 
     public static ItemStack GUI_SETTINGS_HEALTH_SHARED_HEALTH() {
         return addItemDescription(createBasicItem("§fShared health: §b" + HealthSettings.isSharedHealth(), Material.SCULK_SENSOR),
-                List.of("§7" + Phrases.TOGGLE_SETTING));
+                List.of("§7" + Phrases.TOGGLE));
     }
 
     public static ItemStack GUI_SETTINGS_HEALTH_NATURAL_REGENERATION() {
         return addItemDescription(createBasicItem("§fNatural Regeneration: §b" + HealthSettings.isNaturalRegeneration(), Material.CARROT),
-                List.of("§7" + Phrases.TOGGLE_SETTING));
+                List.of("§7" + Phrases.TOGGLE));
     }
 
     public static ItemStack GUI_SETTINGS_HEALTH_REGENERATION() {
         return addItemDescription(createBasicItem("§fRegeneration: §b" + HealthSettings.isRegeneration(), Material.GOLDEN_APPLE),
-                List.of("§7" + Phrases.TOGGLE_SETTING));
+                List.of("§7" + Phrases.TOGGLE));
     }
 
+    //HELPER METHODS
     public static ItemStack renameItem(ItemStack stack, String newName) {
         ItemMeta meta = stack.getItemMeta();
         meta.setDisplayName(newName);
