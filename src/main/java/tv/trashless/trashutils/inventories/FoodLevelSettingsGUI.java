@@ -5,14 +5,14 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import tv.trashless.trashutils.items.Items;
-import tv.trashless.trashutils.utils.Health;
+import tv.trashless.trashutils.utils.FoodLevel;
 
 import java.util.HashMap;
 
-public class HealthSettingsGUI {
+public class FoodLevelSettingsGUI {
     private static final int ROW = 9;
     private static final int SIZE = 5*ROW;
-    private static final Inventory INVENTORY = Bukkit.createInventory(null, SIZE, "§b§lHealth§3§lSettings");
+    private static final Inventory INVENTORY = Bukkit.createInventory(null, SIZE, "§b§lFood§3§lLevel§9§lSettings");
     private static final HashMap<Integer, ItemStack> ITEM_SLOTS = new HashMap<>();
 
     public static Inventory current() {
@@ -24,19 +24,15 @@ public class HealthSettingsGUI {
             INVENTORY.setItem(i, Items.GUI_BACKGROUND());
         }
 
-        ITEM_SLOTS.put(ROW + 1, Items.GUI_MAX_HEALTH(player));
-        ITEM_SLOTS.put(2*ROW + 1, Items.GUI_RESTORE_HEALTH());
+        ITEM_SLOTS.put(ROW + 1, Items.GUI_MAX_FOOD_LEVEL(player));
+        ITEM_SLOTS.put(2*ROW + 1, Items.GUI_RESTORE_FOOD_LEVEL());
 
-        ITEM_SLOTS.put(ROW + 3, Items.GUI_SHARED_HEALTH());
-        if (Health.isShared()) ITEM_SLOTS.put(2*ROW + 3, Items.GUI_ENABLED());
-        else ITEM_SLOTS.put(2*ROW + 3, Items.GUI_DISABLED());
+        ITEM_SLOTS.put(ROW + 4, Items.GUI_SHARED_FOOD_LEVEL());
+        if (FoodLevel.isShared()) ITEM_SLOTS.put(2*ROW + 4, Items.GUI_ENABLED());
+        else ITEM_SLOTS.put(2*ROW + 4, Items.GUI_DISABLED());
 
-        ITEM_SLOTS.put(ROW + 5, Items.GUI_NATURAL_REGEN());
-        if (Health.isNaturalRegen()) ITEM_SLOTS.put(2*ROW + 5, Items.GUI_ENABLED());
-        else ITEM_SLOTS.put(2*ROW + 5, Items.GUI_DISABLED());
-
-        ITEM_SLOTS.put(ROW + 7, Items.GUI_REGEN());
-        if (Health.isRegen()) ITEM_SLOTS.put(2*ROW + 7, Items.GUI_ENABLED());
+        ITEM_SLOTS.put(ROW + 7, Items.GUI_FOOD_LEVEL_DECAY());
+        if (FoodLevel.isDecay()) ITEM_SLOTS.put(2*ROW + 7, Items.GUI_ENABLED());
         else ITEM_SLOTS.put(2*ROW + 7, Items.GUI_DISABLED());
 
         ITEM_SLOTS.put(4*ROW + 4, Items.GUI_GO_BACK());
