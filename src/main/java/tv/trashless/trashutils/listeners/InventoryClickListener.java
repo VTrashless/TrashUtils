@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import tv.trashless.trashutils.gui.Signs;
+import tv.trashless.trashutils.gui.SignBuilders;
 import tv.trashless.trashutils.inventories.FoodLevelSettingsGUI;
 import tv.trashless.trashutils.inventories.HealthSettingsGUI;
 import tv.trashless.trashutils.items.Items;
@@ -30,7 +30,7 @@ public class InventoryClickListener implements Listener {
             event.setCancelled(true);
 
             if (clickedItem.equals(Items.GUI_MAX_HEALTH(whoClicked))) {
-                SignGUI gui = Signs.INPUT()
+                SignGUI gui = SignBuilders.INPUT()
                         .setHandler((player, result) -> {
                             String input = result.getLineWithoutColor(2);
 
@@ -70,7 +70,7 @@ public class InventoryClickListener implements Listener {
             event.setCancelled(true);
 
             if (clickedItem.equals(Items.GUI_MAX_FOOD_LEVEL(whoClicked))) {
-                SignGUI gui = Signs.INPUT()
+                SignGUI gui = SignBuilders.INPUT()
                         .setHandler((player, result) -> {
                             String input = result.getLineWithoutColor(2);
 
