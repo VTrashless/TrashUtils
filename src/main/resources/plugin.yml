@@ -7,3 +7,5 @@ description: You can now randomize various aspects of the game, such as block dr
 commands:
   healthsettings:
     usage: /healthsettings
+  foodlevelsettings:
+    usage: /foodlevelsettings
