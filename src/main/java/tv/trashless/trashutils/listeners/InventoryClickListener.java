@@ -9,8 +9,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import tv.trashless.trashutils.gui.SignBuilders;
-import tv.trashless.trashutils.inventories.FoodLevelSettingsGUI;
-import tv.trashless.trashutils.inventories.HealthSettingsGUI;
+import tv.trashless.trashutils.inventories.Inventories;
 import tv.trashless.trashutils.items.Items;
 import tv.trashless.trashutils.utils.FoodLevelSettings;
 import tv.trashless.trashutils.utils.HealthSettings;
@@ -26,7 +25,7 @@ public class InventoryClickListener implements Listener {
         ItemStack clickedItem = event.getCurrentItem().clone();
 
         assert clickedInventory != null;
-        if (clickedInventory.equals(HealthSettingsGUI.current())) {
+        if (clickedInventory.equals(Inventories.currentHealthSettingsInventory())) {
             event.setCancelled(true);
 
             if (clickedItem.equals(Items.GUI_MAX_HEALTH(whoClicked))) {
@@ -63,10 +62,10 @@ public class InventoryClickListener implements Listener {
                 if (!HealthSettings.isRegen()) HealthSettings.setNaturalRegen(false);
             }
 
-            whoClicked.openInventory(HealthSettingsGUI.update(whoClicked));
+            whoClicked.openInventory(Inventories.updateHealthSettingsInventory(whoClicked));
         }
 
-        if (clickedInventory.equals(FoodLevelSettingsGUI.current())) {
+        if (clickedInventory.equals(Inventories.currentFoodLevelSettingsInventory())) {
             event.setCancelled(true);
 
             if (clickedItem.equals(Items.GUI_RESTORE_FOOD_LEVEL())) {
@@ -75,7 +74,7 @@ public class InventoryClickListener implements Listener {
 
             if (clickedItem.equals(Items.GUI_SHARED_FOOD_LEVEL())) FoodLevelSettings.setShared(!FoodLevelSettings.isShared());
 
-            whoClicked.openInventory(FoodLevelSettingsGUI.update(whoClicked));
+            whoClicked.openInventory(Inventories.updateFoodLevelSettingsInventory());
         }
     }
 }

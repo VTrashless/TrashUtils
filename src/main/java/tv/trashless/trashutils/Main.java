@@ -39,6 +39,8 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new InventoryClickListener(), this);
+
+        pluginManager.registerEvents(new FoodLevelSettings(), this);
         //pluginManager.registerEvents(new PlayerItemConsumeListener(), this);
 
         this.getCommand("healthsettings").setExecutor(new OpenHealthSettingsCommand());
