@@ -12,8 +12,8 @@ import tv.trashless.trashutils.gui.SignBuilders;
 import tv.trashless.trashutils.inventories.FoodLevelSettingsGUI;
 import tv.trashless.trashutils.inventories.HealthSettingsGUI;
 import tv.trashless.trashutils.items.Items;
-import tv.trashless.trashutils.utils.FoodLevel;
-import tv.trashless.trashutils.utils.Health;
+import tv.trashless.trashutils.utils.FoodLevelSettings;
+import tv.trashless.trashutils.utils.HealthSettings;
 
 import java.util.Collections;
 
@@ -36,8 +36,8 @@ public class InventoryClickListener implements Listener {
 
                             if (!input.isEmpty()) {
                                 double newMaxHealth = Double.parseDouble(input);
-                                if (Health.isShared()) Health.setMax(Bukkit.getOnlinePlayers(), newMaxHealth);
-                                else Health.setMax(player, newMaxHealth);
+                                if (HealthSettings.isShared()) HealthSettings.setMaxHealth(Bukkit.getOnlinePlayers(), newMaxHealth);
+                                else HealthSettings.setMaxHealth(player, newMaxHealth);
                             }
 
                             return Collections.emptyList();
@@ -48,19 +48,19 @@ public class InventoryClickListener implements Listener {
             }
 
             if (clickedItem.equals(Items.GUI_RESTORE_HEALTH())) {
-                whoClicked.setHealth(Health.getMax(whoClicked));
+                whoClicked.setHealth(HealthSettings.getMaxHealth(whoClicked));
             }
 
-            if (clickedItem.equals(Items.GUI_SHARED_HEALTH())) Health.setShared(!Health.isShared());
+            if (clickedItem.equals(Items.GUI_SHARED_HEALTH())) HealthSettings.setShared(!HealthSettings.isShared());
 
             if (clickedItem.equals(Items.GUI_NATURAL_REGEN())) {
-                Health.setNaturalRegen(!Health.isNaturalRegen());
-                if (Health.isNaturalRegen()) Health.setRegen(true);
+                HealthSettings.setNaturalRegen(!HealthSettings.isNaturalRegen());
+                if (HealthSettings.isNaturalRegen()) HealthSettings.setRegen(true);
             }
 
             if (clickedItem.equals(Items.GUI_REGEN())) {
-                Health.setRegen(!Health.isRegen());
-                if (!Health.isRegen()) Health.setNaturalRegen(false);
+                HealthSettings.setRegen(!HealthSettings.isRegen());
+                if (!HealthSettings.isRegen()) HealthSettings.setNaturalRegen(false);
             }
 
             whoClicked.openInventory(HealthSettingsGUI.update(whoClicked));
@@ -69,30 +69,11 @@ public class InventoryClickListener implements Listener {
         if (clickedInventory.equals(FoodLevelSettingsGUI.current())) {
             event.setCancelled(true);
 
-            if (clickedItem.equals(Items.GUI_MAX_FOOD_LEVEL(whoClicked))) {
-                SignGUI gui = SignBuilders.INPUT()
-                        .setHandler((player, result) -> {
-                            String input = result.getLineWithoutColor(2);
-
-                            if (!input.isEmpty()) {
-                                int newMaxFoodLevel = Integer.parseInt(input);
-                                FoodLevel.setMax(player, newMaxFoodLevel);
-                            }
-
-                            return Collections.emptyList();
-                        })
-                        .build();
-                gui.open(whoClicked);
-                return;
-            }
-
             if (clickedItem.equals(Items.GUI_RESTORE_FOOD_LEVEL())) {
-                //whoClicked.sendHealthUpdate(whoClicked.getHealth(), FoodLevelSettings.getMaxFoodLevel(whoClicked), 0f);
+                whoClicked.setFoodLevel(20);
             }
 
-            if (clickedItem.equals(Items.GUI_SHARED_FOOD_LEVEL())) FoodLevel.setShared(!FoodLevel.isShared());
-
-            if (clickedItem.equals(Items.GUI_FOOD_LEVEL_DECAY())) FoodLevel.setDecay(!FoodLevel.isDecay());
+            if (clickedItem.equals(Items.GUI_SHARED_FOOD_LEVEL())) FoodLevelSettings.setShared(!FoodLevelSettings.isShared());
 
             whoClicked.openInventory(FoodLevelSettingsGUI.update(whoClicked));
         }

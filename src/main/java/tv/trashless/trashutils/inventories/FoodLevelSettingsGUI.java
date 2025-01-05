@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import tv.trashless.trashutils.items.Items;
-import tv.trashless.trashutils.utils.FoodLevel;
+import tv.trashless.trashutils.utils.FoodLevelSettings;
 
 import java.util.HashMap;
 
@@ -24,16 +24,11 @@ public class FoodLevelSettingsGUI {
             INVENTORY.setItem(i, Items.GUI_BACKGROUND());
         }
 
-        ITEM_SLOTS.put(ROW + 1, Items.GUI_MAX_FOOD_LEVEL(player));
-        ITEM_SLOTS.put(2*ROW + 1, Items.GUI_RESTORE_FOOD_LEVEL());
+        ITEM_SLOTS.put(ROW + 2, Items.GUI_RESTORE_FOOD_LEVEL());
 
-        ITEM_SLOTS.put(ROW + 4, Items.GUI_SHARED_FOOD_LEVEL());
-        if (FoodLevel.isShared()) ITEM_SLOTS.put(2*ROW + 4, Items.GUI_ENABLED());
-        else ITEM_SLOTS.put(2*ROW + 4, Items.GUI_DISABLED());
-
-        ITEM_SLOTS.put(ROW + 7, Items.GUI_FOOD_LEVEL_DECAY());
-        if (FoodLevel.isDecay()) ITEM_SLOTS.put(2*ROW + 7, Items.GUI_ENABLED());
-        else ITEM_SLOTS.put(2*ROW + 7, Items.GUI_DISABLED());
+        ITEM_SLOTS.put(ROW + 6, Items.GUI_SHARED_FOOD_LEVEL());
+        if (FoodLevelSettings.isShared()) ITEM_SLOTS.put(2*ROW + 6, Items.GUI_ENABLED());
+        else ITEM_SLOTS.put(2*ROW + 6, Items.GUI_DISABLED());
 
         ITEM_SLOTS.put(4*ROW + 4, Items.GUI_GO_BACK());
 

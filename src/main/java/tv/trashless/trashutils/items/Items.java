@@ -4,8 +4,8 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionType;
-import tv.trashless.trashutils.utils.FoodLevel;
-import tv.trashless.trashutils.utils.Health;
+import tv.trashless.trashutils.utils.FoodLevelSettings;
+import tv.trashless.trashutils.utils.HealthSettings;
 import tv.trashless.trashutils.utils.Phrases;
 
 import java.util.List;
@@ -58,7 +58,7 @@ public class Items {
 
     //HEALTH SETTINGS
     public static ItemStack GUI_MAX_HEALTH(Player player) {
-        return ItemCreator.addItemDescription(ItemCreator.createHeadItem("§fMax. Health: §b" + Health.getMax(player),
+        return ItemCreator.addItemDescription(ItemCreator.createHeadItem("§fMax. Health: §b" + HealthSettings.getMaxHealth(player),
                 "http://textures.minecraft.net/texture/eb76b4ee988572297cbd874683bee96ae3c55ce94c004e51adc82cee16cd0b0c"),
                 List.of("§7" + Phrases.CLICK_TO_CHANGE));
     }
@@ -69,38 +69,28 @@ public class Items {
     }
 
     public static ItemStack GUI_SHARED_HEALTH() {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fShared health: §b" + Health.isShared(), Material.SCULK_SENSOR),
+        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fShared health: §b" + HealthSettings.isShared(), Material.SCULK_SENSOR),
                 List.of("§7" + Phrases.TOGGLE));
     }
 
     public static ItemStack GUI_NATURAL_REGEN() {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fNatural Regeneration: §b" + Health.isNaturalRegen(), Material.CARROT),
+        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fNatural Regeneration: §b" + HealthSettings.isNaturalRegen(), Material.CARROT),
                 List.of("§7" + Phrases.TOGGLE));
     }
 
     public static ItemStack GUI_REGEN() {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fRegeneration: §b" + Health.isRegen(), Material.GOLDEN_APPLE),
+        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fRegeneration: §b" + HealthSettings.isRegen(), Material.GOLDEN_APPLE),
                 List.of("§7" + Phrases.TOGGLE));
     }
 
     //FOOD LEVEL SETTINGS
-    public static ItemStack GUI_MAX_FOOD_LEVEL(Player player) {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fMax. Food Level: §b" + FoodLevel.getMax(player), Material.COOKED_BEEF),
-                List.of("§7" + Phrases.CLICK_TO_CHANGE));
-    }
-
     public static ItemStack GUI_RESTORE_FOOD_LEVEL() {
         return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fRestore food level", Material.GOLDEN_CARROT),
                 List.of("§7Click to restore food level!"));
     }
 
     public static ItemStack GUI_SHARED_FOOD_LEVEL() {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fShared food level: §b" + FoodLevel.isShared(), Material.SCULK_SENSOR),
-                List.of("§7" + Phrases.TOGGLE));
-    }
-
-    public static ItemStack GUI_FOOD_LEVEL_DECAY() {
-        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fFood level decay: §b" + FoodLevel.isDecay(), Material.CLOCK),
+        return ItemCreator.addItemDescription(ItemCreator.createBasicItem("§fShared food level: §b" + FoodLevelSettings.isShared(), Material.SCULK_SENSOR),
                 List.of("§7" + Phrases.TOGGLE));
     }
 }

@@ -8,8 +8,8 @@ import tv.trashless.trashutils.commands.OpenHealthSettingsCommand;
 import tv.trashless.trashutils.listeners.InventoryClickListener;
 import tv.trashless.trashutils.listeners.JoinListener;
 import tv.trashless.trashutils.listeners.QuitListener;
-import tv.trashless.trashutils.utils.FoodLevel;
-import tv.trashless.trashutils.utils.Health;
+import tv.trashless.trashutils.utils.FoodLevelSettings;
+import tv.trashless.trashutils.utils.HealthSettings;
 
 public final class Main extends JavaPlugin {
 
@@ -25,8 +25,8 @@ public final class Main extends JavaPlugin {
     public void onLoad() {
         Bukkit.getConsoleSender().sendMessage(getPrefix() + "§fLoading...");
 
-        new Health();
-        new FoodLevel();
+        HealthSettings.load();
+        FoodLevelSettings.load();
 
         Bukkit.getConsoleSender().sendMessage(getPrefix() + "§fFinished loading!");
     }
@@ -39,6 +39,7 @@ public final class Main extends JavaPlugin {
         pluginManager.registerEvents(new JoinListener(), this);
         pluginManager.registerEvents(new QuitListener(), this);
         pluginManager.registerEvents(new InventoryClickListener(), this);
+        //pluginManager.registerEvents(new PlayerItemConsumeListener(), this);
 
         this.getCommand("healthsettings").setExecutor(new OpenHealthSettingsCommand());
         this.getCommand("foodlevelsettings").setExecutor(new OpenFoodLevelSettingsCommand());

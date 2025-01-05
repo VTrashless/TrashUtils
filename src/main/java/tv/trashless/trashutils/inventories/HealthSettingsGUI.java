@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import tv.trashless.trashutils.items.Items;
-import tv.trashless.trashutils.utils.Health;
+import tv.trashless.trashutils.utils.HealthSettings;
 
 import java.util.HashMap;
 
@@ -28,15 +28,15 @@ public class HealthSettingsGUI {
         ITEM_SLOTS.put(2*ROW + 1, Items.GUI_RESTORE_HEALTH());
 
         ITEM_SLOTS.put(ROW + 3, Items.GUI_SHARED_HEALTH());
-        if (Health.isShared()) ITEM_SLOTS.put(2*ROW + 3, Items.GUI_ENABLED());
+        if (HealthSettings.isShared()) ITEM_SLOTS.put(2*ROW + 3, Items.GUI_ENABLED());
         else ITEM_SLOTS.put(2*ROW + 3, Items.GUI_DISABLED());
 
         ITEM_SLOTS.put(ROW + 5, Items.GUI_NATURAL_REGEN());
-        if (Health.isNaturalRegen()) ITEM_SLOTS.put(2*ROW + 5, Items.GUI_ENABLED());
+        if (HealthSettings.isNaturalRegen()) ITEM_SLOTS.put(2*ROW + 5, Items.GUI_ENABLED());
         else ITEM_SLOTS.put(2*ROW + 5, Items.GUI_DISABLED());
 
         ITEM_SLOTS.put(ROW + 7, Items.GUI_REGEN());
-        if (Health.isRegen()) ITEM_SLOTS.put(2*ROW + 7, Items.GUI_ENABLED());
+        if (HealthSettings.isRegen()) ITEM_SLOTS.put(2*ROW + 7, Items.GUI_ENABLED());
         else ITEM_SLOTS.put(2*ROW + 7, Items.GUI_DISABLED());
 
         ITEM_SLOTS.put(4*ROW + 4, Items.GUI_GO_BACK());
